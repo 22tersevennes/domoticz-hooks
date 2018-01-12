@@ -1,7 +1,12 @@
 #!/bin/bash
 
+[ -z "$1" ] && {
+    echo "usage: $0 ssh-target"
+    exit
+}
+
 FROM="domoticz:google-cal-event"
-TARGET="fraise:/home/pi"
+TARGET="$1:/home/pi"
 
 RSYNC="rsync -avz --exclude-from=.sync.exclude"
 [ ! -z $DEBUG ] && RSYNC="$RSYNC --dry-run"
